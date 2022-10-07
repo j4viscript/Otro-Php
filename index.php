@@ -24,7 +24,7 @@
 				<div class="row registro justify-content-md-center align-items-center">
 					
 					<div class="col-md-6 col-sm-12 p-3 border">
-						<form method="post" action="app/AuthController.php">
+						<form method="post" action="<?= BASE_PATH ?>auth">
 					
 							<h1 class="text-center">
 								Acceso al panel

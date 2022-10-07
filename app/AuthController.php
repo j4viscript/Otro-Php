@@ -56,11 +56,11 @@
 				$_SESSION['token'] = $response->data->token;
 
 
-				header("Location:../products?success");
+				header("Location:".BASE_PATH."products?success");
 
 			}else{
 
-				header("Location:../?error");
+				header("Location:".BASE_PATH."?error");
 			}
 
 		}
