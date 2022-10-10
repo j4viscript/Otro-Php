@@ -1,44 +1,45 @@
 <?php 
-	session_start();
-
+	include_once 'config.php';
 	if (isset($_POST["action"])) {
-		switch($_POST['action'])
-		{
-			case 'create':
-
-				$name = strip_tags($_POST['name']);
-				$slug = strip_tags($_POST['slug']);
-				$description = strip_tags($_POST['description']);
-				$features = strip_tags($_POST['features']);
-				$brand_id = strip_tags($_POST['brand_id']); 
-
-				$productsController = new ProductsController();
-				$productsController->createProduct($name,$slug,$description,$features,$brand_id);
-			break;
-
-			case 'update':
-
-				$name = strip_tags($_POST['name']);
-				$slug = strip_tags($_POST['slug']);
-				$description = strip_tags($_POST['description']);
-				$features = strip_tags($_POST['features']);
-				$brand_id = strip_tags($_POST['brand_id']); 
-
-				$id = strip_tags($_POST['id']); 
-
-				$productsController = new ProductsController();
-				$productsController->updateProduct($name,$slug,$description,$features,$brand_id,$id);
-			break;
-
-			case 'delete':
-				
-				$id = strip_tags($_POST['id']);
-
-				$productsController = new ProductsController();
-
-				echo json_encode( $productsController->remove($id) );
-
-			break;
+		if(isset($_POST["super_token"]) && $_POST["super_token"] == $_SESSION["super_token"]) {
+			switch($_POST['action'])
+			{
+				case 'create':
+	
+					$name = strip_tags($_POST['name']);
+					$slug = strip_tags($_POST['slug']);
+					$description = strip_tags($_POST['description']);
+					$features = strip_tags($_POST['features']);
+					$brand_id = strip_tags($_POST['brand_id']); 
+	
+					$productsController = new ProductsController();
+					$productsController->createProduct($name,$slug,$description,$features,$brand_id);
+				break;
+	
+				case 'update':
+	
+					$name = strip_tags($_POST['name']);
+					$slug = strip_tags($_POST['slug']);
+					$description = strip_tags($_POST['description']);
+					$features = strip_tags($_POST['features']);
+					$brand_id = strip_tags($_POST['brand_id']); 
+	
+					$id = strip_tags($_POST['id']); 
+	
+					$productsController = new ProductsController();
+					$productsController->updateProduct($name,$slug,$description,$features,$brand_id,$id);
+				break;
+	
+				case 'delete':
+					
+					$id = strip_tags($_POST['id']);
+	
+					$productsController = new ProductsController();
+	
+					echo json_encode( $productsController->remove($id) );
+	
+				break;
+			}
 		}
 	}
 

@@ -1,4 +1,5 @@
 <?php
+	include "../app/config.php";
 	include "../app/ProductsController.php";
 	include "../app/BrandsController.php";
 
@@ -164,8 +165,8 @@
 			      </div>
 
 			      <input type="hidden" id="action" name="action" value="create">
-
 			      <input type="hidden" id="id_product" name="id">
+				  <input type="hidden" name="super_token" value="<?= $_SESSION['super_token'] ?>">
 
 		      </form>
 
@@ -192,6 +193,7 @@
 
 				  	bodyFormData.append('id', id);
 				  	bodyFormData.append('action', 'delete');
+					bodyFormData.append('super_token', "<?= $_SESSION['super_token']?>");
 
 				  	axios.post('../app/ProductsController.php', bodyFormData)
 					  .then(function (response) {
@@ -202,14 +204,12 @@
 					    }else{
 					    	swal("Error", {
 						      icon: "error",
-						    });;
+						    });
 					    }
 					  })
 					  .catch(function (error) {
 					    console.log(error);
 					  });
-
-				    
 				  } else {
 				    swal("Your imaginary file is safe!");
 				  }
@@ -226,10 +226,7 @@
 				document.getElementById('description').value = product.description
 				document.getElementById('features').value = product.features
 				document.getElementById('brand_id').value = product.brand_id
-
 				document.getElementById('id_product').value = product.id
-
-
 				document.getElementById('action').value = 'update'
 
 			}

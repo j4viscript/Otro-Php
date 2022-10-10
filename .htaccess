@@ -3,4 +3,4 @@ RewriteEngine on
 
 #Rules
 RewriteRule ^auth$ app/AuthController.php
-
+RewriteRule ^prod$ app/ProductsController.php

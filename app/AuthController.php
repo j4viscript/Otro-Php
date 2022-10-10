@@ -5,7 +5,6 @@
 			switch($_POST['action'])
 			{
 				case 'access':
-	
 					$email = strip_tags($_POST['email']);
 					$password = strip_tags($_POST['password']);
 	
